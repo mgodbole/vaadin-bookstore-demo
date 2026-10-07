@@ -1,6 +1,7 @@
 package org.eclipse.store.demo.bookstore.ui.views;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.function.SerializableFunction;
@@ -49,7 +50,7 @@ public class ViewBooks extends ViewEntity<Book> {
         //Action column
         this.grid.addColumn(RendererFactory.getBooksActionRenderer(this::showInventory, this::doCreateNewBook))
                 .setAutoWidth(true).setFlexGrow(0)
-                .setHeader("⚒️");
+                .setHeader("⚒️").setTextAlign(ColumnTextAlign.CENTER);
 
         final Button showInventoryButton = new Button(
                 this.getTranslation("showInventory"),
