@@ -47,7 +47,7 @@ public class ViewBooks extends ViewEntity<Book> {
         this.addGridColumnWithTextFilter("isbn13", Book::isbn13);
 
         //Action column
-        this.grid.addColumn(RendererFactory.getBooksActionButtonsRenderer(this::showInventory, this::doCreateNewBook))
+        this.grid.addColumn(RendererFactory.getBooksActionRenderer(this::showInventory, this::doCreateNewBook))
                 .setAutoWidth(true).setFlexGrow(0)
                 .setHeader("⚒️");
 
