@@ -21,8 +21,7 @@ public class RendererFactory {
      * @param <T>          The entity type
      * @return The Renderer
      */
-    public static <T> LitRenderer<T> getBooksActionButtonsRenderer(
-            Consumer<T> viewConsumer, Command createAction) {
+    public static <T> LitRenderer<T> getBooksActionRenderer(Consumer<T> viewConsumer, Command createAction) {
 
         return LitRenderer.<T>of(
                         "<div>" +
@@ -46,6 +45,40 @@ public class RendererFactory {
                 //On click
                 .withFunction("viewInventory", viewConsumer::accept)
                 .withFunction("newBook", item -> createAction.execute());
+    }
+
+    /**
+     * Returns a renderer for the ViewShop with the view inventory and purchase buttons
+     *
+     * @param inventoryConsumer The view inventory callback
+     * @param purchaseConsumer  The view purchase callback
+     * @param <T>               The entity type
+     * @return The Renderer
+     */
+    public static <T> LitRenderer<T> getShopActionRenderer(Consumer<T> inventoryConsumer, Consumer<T> purchaseConsumer) {
+
+        return LitRenderer.<T>of(
+                        "<div>" +
+                                "<vaadin-button theme='tertiary-inline icon' " +
+                                "@click='${viewInventory}' title='${item.inventoryTitle}'>" +
+                                "<vaadin-icon icon='vaadin:stock'></vaadin-icon>" +
+                                "</vaadin-button>" +
+
+                                " " +
+
+                                "<vaadin-button theme='tertiary-inline icon' " +
+                                "@click='${newBook}' title='${item.purchaseTitle}'>" +
+                                "<vaadin-icon icon='vaadin:cart'></vaadin-icon>" +
+                                "</vaadin-button>" +
+                                "</div>"
+                )
+                //Tooltip
+                .withProperty("inventoryTitle", item -> "Show Inventory")
+                .withProperty("purchaseTitle", item -> "Show Purchases")
+
+                //On click
+                .withFunction("viewInventory", inventoryConsumer::accept)
+                .withFunction("newBook", purchaseConsumer::accept);
     }
 
 }
