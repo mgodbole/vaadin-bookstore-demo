@@ -5,6 +5,7 @@ import com.vaadin.flow.component.grid.ColumnTextAlign;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.function.SerializableFunction;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.theme.lumo.LumoUtility;
 import org.eclipse.store.demo.bookstore.BookStoreDemo;
 import org.eclipse.store.demo.bookstore.data.Customer;
 import org.eclipse.store.demo.bookstore.data.Customers;
@@ -61,7 +62,12 @@ public class ViewCustomers extends ViewNamedWithAddress<Customer> {
             showPurchasesButton.setEnabled(b);
         });
 
-        this.add(new HorizontalLayout(showPurchasesButton));
+        var header = new HorizontalLayout(showPurchasesButton);
+        header.addClassNames(LumoUtility.Padding.End.MEDIUM);
+        header.setWidthFull();
+        header.setJustifyContentMode(JustifyContentMode.END);
+
+        this.add(header);
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.function.SerializableFunction;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.theme.lumo.LumoUtility;
 import org.eclipse.store.demo.bookstore.BookStoreDemo;
 import org.eclipse.store.demo.bookstore.data.Book;
 import org.eclipse.store.demo.bookstore.data.Books;
@@ -69,7 +70,12 @@ public class ViewBooks extends ViewEntity<Book> {
                 event -> this.doCreateNewBook()
         );
 
-        this.add(new HorizontalLayout(showInventoryButton, createBookButton));
+        var header = new HorizontalLayout(showInventoryButton, createBookButton);
+        header.addClassNames(LumoUtility.Padding.End.MEDIUM);
+        header.setWidthFull();
+        header.setJustifyContentMode(JustifyContentMode.END);
+
+        this.add(header);
     }
 
     private void showInventory(final Book book) {
