@@ -45,9 +45,9 @@ public class ViewBooks extends ViewEntity<Book> {
         this.addGridColumnWithDynamicFilter("publisher", Book::publisher);
         this.addGridColumnWithDynamicFilter("language", Book::language);
         this.addGridColumnWithTextFilter("isbn13", Book::isbn13);
+
         //Action column
-        this.grid.addColumn(book -> book.author().name().length())
-                .setRenderer(RendererFactory.getBooksActionButtonsRenderer(this::showInventory, this::doCreateNewBook))
+        this.grid.addColumn(RendererFactory.getBooksActionButtonsRenderer(this::showInventory, this::doCreateNewBook))
                 .setAutoWidth(true).setFlexGrow(0)
                 .setHeader("⚒️");
 
