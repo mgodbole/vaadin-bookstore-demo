@@ -9,7 +9,7 @@ package org.eclipse.store.demo.bookstore;
  * This program and the accompanying materials are made
  * available under the terms of the Eclipse Public License 2.0
  * which is available at https://www.eclipse.org/legal/epl-2.0/
- * 
+ *
  * SPDX-License-Identifier: EPL-2.0
  * #L%
  */
@@ -31,13 +31,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @Push
-@Theme(themeClass = Lumo.class, variant = Lumo.DARK)
-public class VaadinApplication implements AppShellConfigurator
-{
-	public static void main(
-		final String[] args
-	)
-	{
-		SpringApplication.run(VaadinApplication.class, args);
-	}
+@Theme(themeClass = Lumo.class, variant = Lumo.LIGHT)
+public class VaadinApplication implements AppShellConfigurator {
+
+    public static void main(final String[] args) {
+        SpringApplication.run(VaadinApplication.class, args);
+    }
 }
