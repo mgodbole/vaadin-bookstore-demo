@@ -81,4 +81,28 @@ public class RendererFactory {
                 .withFunction("newBook", purchaseConsumer::accept);
     }
 
+    /**
+     * Returns the renderer for the Customer view with view purchase button
+     *
+     * @param purchaseConsumer The view purchase callback
+     * @param <T>              The entity type
+     * @return The action renderer
+     */
+    public static <T> LitRenderer<T> getCustomerActionRenderer(Consumer<T> purchaseConsumer) {
+
+        return LitRenderer.<T>of(
+                        "<div>" +
+                                "<vaadin-button theme='tertiary-inline icon' " +
+                                "@click='${newBook}' title='${item.purchaseTitle}'>" +
+                                "<vaadin-icon icon='vaadin:cart'></vaadin-icon>" +
+                                "</vaadin-button>" +
+                                "</div>"
+                )
+                //Tooltip
+                .withProperty("purchaseTitle", item -> "Show Purchases")
+
+                //On click
+                .withFunction("newBook", purchaseConsumer::accept);
+    }
+
 }
